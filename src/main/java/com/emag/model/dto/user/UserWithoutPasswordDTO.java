@@ -24,6 +24,4 @@ public class UserWithoutPasswordDTO {
     private List<Address> addresses;
     private boolean isSubscribed;
 
-
-
 }

@@ -19,10 +19,10 @@ public class CartController {
     @Autowired
     CartService cartService;
 
-    @PostMapping("/cart/{productId}")
-    public ResponseEntity<UserCart> addProductToCart(@PathVariable long productId , HttpServletRequest request){
-        return ResponseEntity.ok(cartService.addProductToCart(productId , sessionManager.getLoggedUser(request)));
-    }
+        @PostMapping("/cart/{productId}")
+        public ResponseEntity<UserCart> addProductToCart(@PathVariable long productId , HttpServletRequest request){
+            return ResponseEntity.ok(cartService.addProductToCart(productId , sessionManager.getLoggedUser(request)));
+        }
 
     @DeleteMapping("/cart/{productId}")
     public ResponseEntity<UserCart> removeProductFromCart(@PathVariable long productId , HttpServletRequest request){

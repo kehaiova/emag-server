@@ -1,5 +1,6 @@
 package com.emag.model.pojo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orders_have_products")
-public class OrderedProduct {
+public class    OrderedProduct {
 
     @Embeddable
     @Data
@@ -26,7 +27,7 @@ public class OrderedProduct {
 
     @ManyToOne
     @MapsId("orderId")
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "order_id")
     Order order;
 

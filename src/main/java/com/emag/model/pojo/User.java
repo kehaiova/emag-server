@@ -1,21 +1,17 @@
 package com.emag.model.pojo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sun.istack.NotNull;
-import lombok.*;
-import org.hibernate.annotations.Type;
-import org.springframework.http.ResponseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.awt.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Component
 @Entity
@@ -47,18 +43,18 @@ public class User {
     @ManyToMany
     @JsonManagedReference
     @JoinTable(
-            name="users_addresses",
-            joinColumns = {@JoinColumn(name="user_id")},
-            inverseJoinColumns = {@JoinColumn(name="address_id")}
+            name = "users_addresses",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "address_id")}
     )
     private List<Address> addresses;
 
     @ManyToMany
     @JsonManagedReference
     @JoinTable(
-            name = "users_like_products" ,
+            name = "users_like_products",
             joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn (name = "product_id")}
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
     )
     private List<Product> likedProducts;
 
@@ -81,11 +77,6 @@ public class User {
 
 
     private boolean subscribed;
-
-
-    
-
-
 
 
 }

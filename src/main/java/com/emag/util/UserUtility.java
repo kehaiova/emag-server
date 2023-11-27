@@ -2,26 +2,21 @@ package com.emag.util;
 
 import com.emag.exception.BadRequestException;
 import com.emag.model.dto.AddressDTO;
-import com.emag.model.dto.register.RegisterRequestUserDTO;
 import com.emag.model.pojo.Address;
 import com.emag.model.pojo.User;
-import com.emag.model.repository.UserRepository;
-import com.emag.service.UserService;
 import org.passay.CharacterData;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class UserUtility  {
-
+public class UserUtility {
 
 
     public static boolean isValidPass(String password) {
-        if (password == null){
+        if (password == null) {
             throw new BadRequestException("Password is mandatory!");
         }
         boolean result = false;
@@ -33,17 +28,17 @@ public class UserUtility  {
         return result;
     }
 
-    public static boolean passwordsMatch(String password1 , String password2) {
+    public static boolean passwordsMatch(String password1, String password2) {
         return password1.equals(password2);
     }
 
     public static boolean isValidName(String name) {
         String[] names = name.trim().split(" ");
 
-        if (name == null){
+        if (name == null) {
             throw new BadRequestException("Name is mandatory!");
         }
-        if (names.length != 2){
+        if (names.length != 2) {
             throw new BadRequestException("Enter first and last name , separated by space!");
         }
         String specialCharacters = "#?!@$%^&*-:'{}+_()<>|[]";
@@ -91,14 +86,13 @@ public class UserUtility  {
     public static Address validateAddress(AddressDTO addressDTO) {
         Address addressPOJO = new Address();
         String address = addressDTO.getAddress();
-        if (address != null){
+        if (address != null) {
             addressPOJO.setAddress(address);
-        }
-        else {
+        } else {
             throw new BadRequestException("Address field is mandatory!");
         }
         String addressDescription = addressDTO.getDescription();
-        if (addressDescription != null){
+        if (addressDescription != null) {
             addressPOJO.setDescription(addressDescription);
         }
         return addressPOJO;
@@ -106,14 +100,13 @@ public class UserUtility  {
 
     public static boolean isValidMobilePhone(String mobilePhone) {
         mobilePhone = mobilePhone.trim();
-        if (mobilePhone.length() == 10){
-            if (!mobilePhone.startsWith("08") && !mobilePhone.matches("^[0-9]*$")){
+        if (mobilePhone.length() == 10) {
+            if (!mobilePhone.startsWith("08") && !mobilePhone.matches("^[0-9]*$")) {
                 return false;
             }
             return true;
-        }
-        else if (mobilePhone.length() == 13)   {
-            if (!mobilePhone.startsWith("+3598") && mobilePhone.substring(1 , 13).matches("^[0-9]*$")){
+        } else if (mobilePhone.length() == 13) {
+            if (!mobilePhone.startsWith("+3598") && mobilePhone.substring(1, 13).matches("^[0-9]*$")) {
                 return false;
             }
             return true;
@@ -128,7 +121,7 @@ public class UserUtility  {
     public static boolean adressExists(Address address, User user) {
         List<Address> addresses = user.getAddresses();
         for (Address addr : addresses) {
-            if (addr.getAddress().equals(address.getAddress())){
+            if (addr.getAddress().equals(address.getAddress())) {
                 return true;
             }
         }
